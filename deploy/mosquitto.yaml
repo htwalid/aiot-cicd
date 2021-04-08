@@ -47,13 +47,19 @@ spec:
         image: eclipse-mosquitto
         ports:
         - containerPort: 9001
-        - containerPort: 8883
+        - containerPort: 1883
         volumeMounts:
+        - name: mosquitto-config
+          mountPath: /mosquitto/config/mosquitto.conf
+          subPath: mosquitto.conf
         - name: mosquitto-data
           mountPath: /mosquitto/data
         - name: mosquitto-log
-          mountPath: /mosquitto/log/
+          mountPath: /mosquitto/log
       volumes:
+      - name: mosquitto-config
+        configMap:
+          name: mosquitto-config
       - name: mosquitto-data
         persistentVolumeClaim:
           claimName: mosquitto-data-pvc

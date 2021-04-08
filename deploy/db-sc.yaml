@@ -2,6 +2,8 @@ kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
   name: db-sc
-provisioner: pxd.portworx.com
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
 parameters:
+  io_profile: "db_remote"
   repl: "3"
