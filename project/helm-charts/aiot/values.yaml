@@ -1,0 +1,71 @@
+# Default Values
+# The following are the default values used for every container in the
+# template.
+---
+nameOverride: ~
+fullNameOverride: ~
+fullHostnameOverride: ~
+
+# Default Values
+# The following are the default values used for every container in the
+# template.
+global:
+  image_registry: ''
+  image_org: "htwalid/"
+  image_tag: ~
+  image_pullPolicy: "Always"
+
+# Default security context under which the containers run
+securityContext:
+  enabled: true
+  fsGroup: 1001
+  runAsUser: 1001
+  runAsGroup: 1001
+
+# Define connectivity to services on which AIOT depends
+services:
+
+
+# Define the replica count for everything
+replicas:
+  calico: 1
+  db-sc: 3
+  fan-1: 1
+  fan-2: 1
+  grafana: 1
+  infer-sc: 1
+  infer: 1
+  influxdb: 1
+  mosquitto: 1
+  predict: 1
+  telegraf: 1
+
+images:
+  infer:
+    registry: '{{ .Values.global.image_registry }}'
+    repository: '{{ .Values.global.image_org }}aiot-infer'
+    tag: '{{- if hasKey .Values.global "image_tag" }}{{- if .Values.global.image_tag }}{{ .Values.global.image_tag }}{{- else }}{{ .Chart.AppVersion }}{{- end }}{{- else }}{{ .Chart.AppVersion }}{{- end }}'
+    pullPolicy: '{{ .Values.global.image_pullPolicy }}'
+  predict:
+    registry: '{{ .Values.global.image_registry }}'
+    repository: '{{ .Values.global.image_org }}aiot-predict'
+    tag: '{{- if hasKey .Values.global "image_tag" }}{{- if .Values.global.image_tag }}{{ .Values.global.image_tag }}{{- else }}{{ .Chart.AppVersion }}{{- end }}{{- else }}{{ .Chart.AppVersion }}{{- end }}'
+    pullPolicy: '{{ .Values.global.image_pullPolicy }}'
+  sensor:
+    registry: '{{ .Values.global.image_registry }}'
+    repository: '{{ .Values.global.image_org }}aiot-sensor'
+    tag: '{{- if hasKey .Values.global "image_tag" }}{{- if .Values.global.image_tag }}{{ .Values.global.image_tag }}{{- else }}{{ .Chart.AppVersion }}{{- end }}{{- else }}{{ .Chart.AppVersion }}{{- end }}'
+    pullPolicy: '{{ .Values.global.image_pullPolicy }}'
+  grafana:
+    repository: 'grafana/grafana'
+    tag: 'latest'
+    pullPolicy: 'Always'
+  influxdb:
+    repository: 'docker.io/influxdb'
+    tag: '1.6'
+    pullPolicy: 'Always'
+  mosquitto:
+    repository: 'eclipse-mosquitto'
+    tag: ''
+    pullPolicy: 'Always'
+  
