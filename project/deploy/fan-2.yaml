@@ -30,7 +30,3 @@ spec:
             value: "1"
           - name: DEVICE_ID
             value: "2"
-
-
-
-
