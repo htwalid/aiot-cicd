@@ -15,14 +15,14 @@ spec:
     spec:
       initContainers:
       - name: wait-for-mosquitto
-        image: janakiramm/wait
+        image: htwalid/aiot-wait
         args: ["--timeout=60", "mosquitto:1883"]
       - name: wait-for-infer
-        image: janakiramm/wait
+        image: htwalid/aiot-wait
         args: ["--timeout=60", "infer:5000"]      
       containers:
       - name: predict
-        image: janakiramm/predict
+        image: htwalid/aiot-predict
         env:
           - name: MQTT_HOST
             value: "mosquitto"

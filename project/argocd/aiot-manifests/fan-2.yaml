@@ -15,11 +15,11 @@ spec:
     spec:
       initContainers:
       - name: wait-for-mosquitto
-        image: janakiramm/wait
+        image: htwalid/aiot-wait
         args: ["--timeout=60", "mosquitto:1883"]      
       containers:
       - name: fan-2
-        image: janakiramm/fan
+        image: htwalid/aiot-fan
         imagePullPolicy: Always
         env:
           - name: MQTT_HOST

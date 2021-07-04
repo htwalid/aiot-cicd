@@ -61,10 +61,10 @@ spec:
     spec:
       initContainers:
       - name: wait-for-mosquitto
-        image: janakiramm/wait
+        image: htwalid/aiot-wait
         args: ["--timeout=60", "mosquitto:1883"]
       - name: wait-for-influxdb
-        image: janakiramm/wait
+        image: htwalid/aiot-wait
         args: ["--timeout=60", "influxdb:8086"]                
       containers:
       - name: telegraf
