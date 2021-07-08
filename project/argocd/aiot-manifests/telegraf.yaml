@@ -50,7 +50,7 @@ metadata:
   name: telegraf
   namespace: aiot  
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: telegraf
