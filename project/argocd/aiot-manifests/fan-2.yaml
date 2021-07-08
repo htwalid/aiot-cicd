@@ -4,7 +4,7 @@ metadata:
   name: fan-2
   namespace: aiot  
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: fan-2
