@@ -28,7 +28,7 @@ spec:
   selector:
     matchLabels:
       component: influxdb
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       name: influxdb
